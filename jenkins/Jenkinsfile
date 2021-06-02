@@ -18,8 +18,5 @@ pipeline{
         success{
             archiveArtifacts artifacts: 'cmd/todo-app', fingerprint: true
         }
-        always{
-            deleteDir()
-        }
     }
 }
