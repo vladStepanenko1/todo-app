@@ -9,7 +9,8 @@ pipeline{
         stage('Build'){
             steps{
                 sh 'mkdir bin/'
-                sh 'go build cmd/main.go -o bin/todo-app'
+                sh 'cd cmd'
+                sh 'go build main.go -o ../bin/todo-app'
             }
         }
     }
