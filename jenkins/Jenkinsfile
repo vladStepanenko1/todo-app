@@ -5,6 +5,7 @@ pipeline{
             args '-e HOME=/tmp'
         }
     }
+
     stages{
         stage('Build'){
             steps{
@@ -17,6 +18,9 @@ pipeline{
     post{
         success{
             archiveArtifacts artifacts: 'bin/*', fingerprint: true
+        }
+        always{
+            deleteDir()
         }
     }
 }
