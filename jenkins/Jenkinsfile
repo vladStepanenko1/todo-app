@@ -16,7 +16,7 @@ pipeline{
     }
     post{
         success{
-            archiveArtifacts artifacts: 'cmd/todo-app', fingerprint: true
+            archiveArtifacts artifacts: 'todo-app', fingerprint: true
         }
     }
 }
