@@ -1,0 +1,21 @@
+pipeline{
+    agent{
+        docker{
+            image 'golang:alpine3.13'
+            args '-e HOME=/tmp'
+        }
+    }
+    stages{
+        stage('Build'){
+            steps{
+                sh 'mkdir bin/'
+                sh 'go build cmd/main.go -o bin/todo-app'
+            }
+        }
+    }
+    post{
+        success{
+            archiveArtifacts: 'bin/*', fingerprint: true
+        }
+    }
+}
