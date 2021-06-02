@@ -9,13 +9,14 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                sh 'go build ./cmd/main.go -o todo-app'
+                sh 'cd cmd'
+                sh 'go build -o todo-app'
             }
         }
     }
     post{
         success{
-            archiveArtifacts artifacts: 'todo-app', fingerprint: true
+            archiveArtifacts artifacts: 'cmd/todo-app', fingerprint: true
         }
         always{
             deleteDir()
