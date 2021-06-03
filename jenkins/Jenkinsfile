@@ -9,9 +9,9 @@ pipeline{
     stages{
         stage('Build'){
             steps{
-                sh 'echo BUILDING PROJECT...'
-                sh 'cd cmd'
-                sh 'go build -o todo-app'
+                script{
+                    def image = docker.build("todo-app:${env.BUILD_ID}", "./docker/Dockerfile")
+                }
             }
         }
     }
