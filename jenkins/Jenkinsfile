@@ -5,7 +5,7 @@ pipeline{
         stage('Build'){
             steps{
                 script{
-                    def image = docker.build("todo-app:${env.BUILD_ID}", "./docker/Dockerfile")
+                    def image = docker.build("todo-app:${env.BUILD_ID}", "./docker")
                 }
             }
         }
