@@ -1,11 +1,8 @@
 pipeline{
     agent any
-
     stages{
         stage('Build'){
             steps{
-                sh 'pwd'
-                sh 'ls -l'
                 script{
                     def image = docker.build("todo-app:${env.BUILD_ID}", "-f docker/Dockerfile .")
                 }
@@ -13,8 +10,8 @@ pipeline{
         }
     }
     post{
-        success{
-            archiveArtifacts artifacts: 'todo-app', fingerprint: true
+        always{
+            telegramSend(message:'${PROJECT_NAME}:${BUILD_STATUS}', chatId: '-1001154952259')
         }
     }
 }
