@@ -9,6 +9,7 @@ pipeline{
     stages{
         stage('Build'){
             steps{
+                sh 'echo BUILDING PROJECT...'
                 sh 'cd cmd'
                 sh 'go build -o todo-app'
             }
