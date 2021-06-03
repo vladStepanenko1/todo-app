@@ -11,7 +11,7 @@ pipeline{
     }
     post{
         always{
-            telegramSend(message:"${PROJECT_NAME}:${BUILD_STATUS}", chatId: -1001154952259)
+            telegramSend(message:'${PROJECT_NAME}:${BUILD_STATUS}', chatId: -1001154952259)
         }
     }
 }
