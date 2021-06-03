@@ -7,7 +7,7 @@ pipeline{
                 sh 'pwd'
                 sh 'ls -l'
                 script{
-                    def image = docker.build("todo-app:${env.BUILD_ID}", "./docker")
+                    def image = docker.build("todo-app:${env.BUILD_ID}", "-f docker/Dockerfile .")
                 }
             }
         }

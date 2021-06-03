@@ -1,4 +1,4 @@
 FROM golang:alpine3.13
 WORKDIR /todo-app
-COPY ../. .
+COPY . .
 RUN go build -o app .
