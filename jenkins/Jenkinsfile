@@ -4,6 +4,8 @@ pipeline{
     stages{
         stage('Build'){
             steps{
+                sh 'pwd'
+                sh 'ls -l'
                 script{
                     def image = docker.build("todo-app:${env.BUILD_ID}", "./docker")
                 }
