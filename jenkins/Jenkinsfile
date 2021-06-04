@@ -16,10 +16,7 @@ pipeline{
     }
     post{
         always{
-            script{
-                def message = "${PROJECT_NAME}:${BUILD_STATUS}"
-                sh('curl -s -X POST $API_URL -d chat_id=$TELEGRAM_CHAT_ID -d text=$message')
-            }
+            sh("curl -s -X POST ${API_URL} -d chat_id=${TELEGRAM_CHAT_ID} -d text=${PROJECT_NAME:$BUILD_STATUS}")
         }
     }
 }
