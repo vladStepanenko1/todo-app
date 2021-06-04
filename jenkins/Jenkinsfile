@@ -1,10 +1,5 @@
 pipeline{
     agent any
-    // environment{
-    //     TELEGRAM_TOKEN_ID = credentials('telegram_token_id')
-    //     TELEGRAM_CHAT_ID = credentials('telegram_chat_id')
-    //     API_URL = "https://api.telegram.org/bot${TELEGRAM_TOKEN_ID}/sendMessage"
-    // }
     stages{
         stage('Build'){
             steps{
