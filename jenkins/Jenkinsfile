@@ -1,10 +1,10 @@
 pipeline{
     agent any
-    environment{
-        TELEGRAM_TOKEN_ID = credentials('telegram_token_id')
-        TELEGRAM_CHAT_ID = credentials('telegram_chat_id')
-        API_URL = "https://api.telegram.org/bot${TELEGRAM_TOKEN_ID}/sendMessage"
-    }
+    // environment{
+    //     TELEGRAM_TOKEN_ID = credentials('telegram_token_id')
+    //     TELEGRAM_CHAT_ID = credentials('telegram_chat_id')
+    //     API_URL = "https://api.telegram.org/bot${TELEGRAM_TOKEN_ID}/sendMessage"
+    // }
     stages{
         stage('Build'){
             steps{
@@ -14,9 +14,15 @@ pipeline{
             }
         }
     }
+    environment{
+        TELEGRAM_TOKEN_ID = credentials('telegram_token_id')
+        TELEGRAM_CHAT_ID = credentials('telegram_chat_id')
+        API_URL = "https://api.telegram.org/bot${TELEGRAM_TOKEN_ID}/sendMessage"
+        MESSAGE = "${BUILD_TAG}:${currentBuild.currentResult}"
+    }
     post{
         always{
-            sh '''curl -s -X POST $API_URL -d chat_id=$TELEGRAM_CHAT_ID -d text="${BUILD_TAG}:${currentBuild.currentResult}"'''
+            sh '''curl -s -X POST $API_URL -d chat_id=$TELEGRAM_CHAT_ID -d text="$MESSAGE"'''
         }
     }
 }
