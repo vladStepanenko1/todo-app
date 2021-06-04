@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        TELEGRAM_TOKEN_ID = 1859740706:AAG6q4GAbIRBFTWfA145s1qZBmqgPSUr5Dg
+        TELEGRAM_TOKEN_ID = '1859740706:AAG6q4GAbIRBFTWfA145s1qZBmqgPSUr5Dg'
         TELEGRAM_CHAT_ID = -1001154952259
     }
     stages{
