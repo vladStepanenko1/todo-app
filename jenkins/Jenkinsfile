@@ -1,5 +1,9 @@
 pipeline{
     agent any
+    environment{
+        TELEGRAM_TOKEN_ID = 1859740706:AAG6q4GAbIRBFTWfA145s1qZBmqgPSUr5Dg
+        TELEGRAM_CHAT_ID = -1001154952259
+    }
     stages{
         stage('Build'){
             steps{
@@ -11,7 +15,9 @@ pipeline{
     }
     post{
         always{
-            telegramSend(message:'${PROJECT_NAME}:${BUILD_STATUS}', chatId: -1001154952259)
+            script{
+                curl -s -X POST 'https://api.telegram.org/bot${TELEGRAM_TOKEN_ID}/sendMessage -d chat_id=${TELEGRAM_CHAT_ID} -d text="${PROJECT_NAME}:${BUILD_STATUS}"'
+            }
         }
     }
 }
