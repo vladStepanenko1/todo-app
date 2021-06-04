@@ -3,7 +3,7 @@ pipeline{
     environment{
         TELEGRAM_TOKEN_ID = '1859740706:AAG6q4GAbIRBFTWfA145s1qZBmqgPSUr5Dg'
         TELEGRAM_CHAT_ID = -1001154952259
-        URL = 'https://api.telegram.org/bot${TELEGRAM_TOKEN_ID}/sendMessage'
+        API_URL = 'https://api.telegram.org/bot${TELEGRAM_TOKEN_ID}/sendMessage'
     }
     stages{
         stage('Build'){
