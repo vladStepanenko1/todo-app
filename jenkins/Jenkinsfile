@@ -19,9 +19,7 @@ pipeline{
         stage('Deploy'){
             steps{
                 sh '''curl -s -X POST $API_URL -d chat_id=$TELEGRAM_CHAT_ID -d text="Running docker image..."'''
-                script{
-                    image.run("-p 49002:8000")
-                }
+                sh "docker run -d ${APP_IMAGE_NAME} -p 49002:8000"
             }
         }
     }
