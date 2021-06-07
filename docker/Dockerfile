@@ -3,6 +3,8 @@ FROM golang:alpine as builder
 # Copy the source code into the container
 COPY . .
 
+RUN pwd && ls -l
+
 # Download dependecy using go.mod
 RUN go.mod download
 
