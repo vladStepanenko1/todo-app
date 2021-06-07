@@ -17,7 +17,7 @@ FROM alpine:3.13
 WORKDIR /usr/bin
 
 # Copy binary file from builder image to runtime image 
-COPY --from=builder /todo-app/bin /go/bin
+COPY --from=builder /go/src/todo-app/bin /go/bin
 
 # Export neccesary port
 EXPOSE 8000
