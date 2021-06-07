@@ -12,7 +12,7 @@ COPY . .
 RUN pwd && ls -l
 
 # Download dependecy using go.mod
-RUN go.mod download
+RUN go mod download
 
 # Build the application
 RUN go build -o ./bin/todo-app ./cmd/main.go
