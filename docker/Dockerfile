@@ -19,6 +19,9 @@ WORKDIR /usr/bin
 # Copy binary file from builder image to runtime image 
 COPY --from=builder /go/src/todo-app/bin /go/bin
 
+# Copy config file to runtime image
+COPY --from=builder /go/src/todo-app/configs /usr/bin/configs
+
 # Export neccesary port
 EXPOSE 8000
 
