@@ -1,8 +1,5 @@
 FROM golang:alpine as builder
 
-# Move to project's directory /todo-app
-WORKDIR /todo-app
-
 # Copy the source code into the container
 COPY . .
 
