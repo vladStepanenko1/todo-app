@@ -6,14 +6,13 @@ pipeline{
         API_URL = "https://api.telegram.org/bot${TELEGRAM_TOKEN_ID}/sendMessage"
         APP_IMAGE_NAME = "todo-app:${env.BUILD_ID}"
         MESSAGE = "${BUILD_TAG}:${currentBuild.currentResult}.\nDocker image: ${APP_IMAGE_NAME}"
+        DOCKERFILE_PATH = "docker/Dockerfile"
     }
     stages{
         stage('Build'){
             steps{
                 sh '''curl -s -X POST $API_URL -d chat_id=$TELEGRAM_CHAT_ID -d text="Build started $BUILD_URL"'''
-                script{
-                    def image = docker.build("${APP_IMAGE_NAME}", "-f docker/Dockerfile .")
-                }
+                sh "docker build -f ${DOCKERFILE_PATH} -t ${APP_IMAGE_NAME} ."
             }
         }
         stage('Deploy'){
