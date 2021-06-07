@@ -1,9 +1,10 @@
 FROM golang:alpine as builder
 
+# Move to working directory
+WORKDIR /go/src/todo-app
+
 # Copy the source code into the container
 COPY . .
-
-RUN pwd && ls -l
 
 # Download dependecy using go.mod
 RUN go mod download
